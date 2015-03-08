@@ -119,3 +119,4 @@ for inc in range(0,100,1): #vary maxWithdrawals
 trace1 = Scatter3d(x=x,y=y,z=z)
 data = Data([trace1])
 py.plot(data)
+
