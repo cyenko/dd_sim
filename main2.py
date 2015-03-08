@@ -31,7 +31,7 @@ def runTrial(growthRate,PanicFactor,maxWithdrawals,initialInvestment,verbose,rou
 	theRisks=[]
 	Conf=[]
 	for i in range(0,numPeople):
-		currentAccount=math.fabs(random.normalvariate(1000,200))
+		currentAccount=math.fabs(random.normalvariate(1000,100))
 		BankCash=BankCash+currentAccount
 		if yenko:
 			peopleList.append([random.normalvariate(.5,.5/3),0,i,0,currentAccount])
@@ -141,7 +141,7 @@ def runTrial(growthRate,PanicFactor,maxWithdrawals,initialInvestment,verbose,rou
 def Growth():
 	x = []
 	y = []
-	PanicFactor=.9
+	PanicFactor=.4
 	for inc in range(0,100,2):
 		growthParam = float(inc)/100.00
 		closeSum = 0
@@ -169,6 +169,7 @@ def Closure():
 		PanicFactor = float(inc)/100.00
 		closeSum = 0
 		maxWithdrawals=10000
+		numTrials=300
 		for i in range(0,numTrials):
 			closeSum = closeSum + runTrial(growthParam,PanicFactor,maxWithdrawals,initialInvestment,0,3,0)
 		fractionClose = float(closeSum)/numTrials
@@ -180,7 +181,7 @@ def Closure():
 	plt.plot(x,y)
 	plt.xlabel("Panic Factor ")
 	plt.ylabel("Bank closure % (out of 100 trials)")
-	plt.title("Reward Pameter vs. Bank Closure")
+	plt.title("Bank Closure vs Panic Factor")
 	plt.show()
 
 def Trial3d():
@@ -192,9 +193,9 @@ def Trial3d():
 	y = []
 	z = []
 	Flags=0
-	for inc in range(0,100,2): #vary maxWithdrawals
+	for inc in range(0,100,1): #vary maxWithdrawals
 		print inc
-		for inc2 in range(0,100,2): #vary growthParam
+		for inc2 in range(0,100,1): #vary growthParam
 			growthParam = float(inc2)/100
 			PanicFactor= float(inc)/100
 			closeSum = 0
