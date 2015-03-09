@@ -1,11 +1,10 @@
-import sys
 import random
-import math
 import matplotlib.pyplot as plt
-from matplotlib import cm
-from mpl_toolkits.mplot3d.axes3d import Axes3D
-import numpy as np
-
+import plotly.plotly as py
+from plotly.graph_objs import *
+from mpl_toolkits.mplot3d import Axes3D
+import math
+import sys
 def CreatePerson(t,d):
 
 	risk = random.normalvariate(.6,(.2))

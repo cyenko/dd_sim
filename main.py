@@ -2,6 +2,9 @@ import random
 import matplotlib.pyplot as plt
 import plotly.plotly as py
 from plotly.graph_objs import *
+from mpl_toolkits.mplot3d import Axes3D
+import math
+import sys
 #Model settings
 verbose = False
 growthRate = .2 #reward parameters for waiting vs withdrawing early
@@ -104,6 +107,9 @@ plt.show()
 x = []
 y = []
 z = []
+fig = plt.figure()
+ax = fig.add_subplot(111,projection='3d')
+
 for inc in range(0,100,1): #vary maxWithdrawals
 	print inc
 	for inc2 in range(0,100,1): #vary growthParam
@@ -116,7 +122,10 @@ for inc in range(0,100,1): #vary maxWithdrawals
 		x.append(maxWithdrawals)
 		y.append(growthParam)
 		z.append(fractionClose)
-trace1 = Scatter3d(x=x,y=y,z=z)
-data = Data([trace1])
-py.plot(data)
+
+ax.scatter(x,y,z,c='r',marker='o')
+ax.set_xlabel('maxWithdrawals')
+ax.set_ylabel('growthParam')
+ax.set_zlabel('Probability of closing')
+plt.show()
 
